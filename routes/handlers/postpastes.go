@@ -6,6 +6,7 @@ import (
 	"pastebin/models"
 
 	"github.com/labstack/echo/v4"
+	"golang.org/x/crypto/bcrypt"
 )
 
 func PostPastes(c echo.Context) error {
@@ -19,7 +20,23 @@ func PostPastes(c echo.Context) error {
 			},
 		)
 	}
-	res := db.DB.Save(post)
+	cost := bcrypt.DefaultCost
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(post.Password), cost)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"message": "something went wrong while hashing password",
+			"error":   err.Error(),
+		})
+	}
+	diffSave := &models.Pastes{
+		Title:       post.Title,
+		Content:     post.Content,
+		Password:    string(hashedPassword),
+		IsAnon:      post.IsAnon,
+		OneTimeView: post.OneTimeView,
+	}
+	res := db.DB.Save(diffSave)
 	if res.Error != nil {
 		return c.JSON(
 			http.StatusInternalServerError,
