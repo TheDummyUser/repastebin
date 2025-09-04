@@ -60,6 +60,21 @@ Fields `is_anon` and `one_time_view` default to `false` if not provided.
 3. **GET /:id**
   Fetches the paste based on the id provided.
 
+4. **POST /pastepassword**
+   Fetches the password protected paste.
+   Requires a JSON body in the folloing format:
+   
+```json
+{
+	"title":"the title"
+	"content": "the content",
+	"is_anon": false,
+	"one_time_view": false
+	"password": "your password here."
+}
+```
+Fields `is_anon` and `one_time_view` default to `false` if not provided.
+
 ***
 
 ## Notes

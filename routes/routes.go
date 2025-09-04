@@ -17,4 +17,7 @@ func SetUpRoutes(e *echo.Echo) {
 	e.GET("/:id", func(c echo.Context) error {
 		return handlers.GetSinglePaste(c)
 	})
+	e.POST("/pastepassword", func(c echo.Context) error {
+		return handlers.GetPasswordPosts(c)
+	})
 }
