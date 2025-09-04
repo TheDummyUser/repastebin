@@ -27,3 +27,8 @@ type PasteRequest struct {
 	IsAnon      bool   `json:"is_anon"`
 	Password    string `json:"password"`
 }
+
+type PastePasswordRequest struct {
+	ID       uint   `json:"id"`
+	Password string `json:"password"`
+}
