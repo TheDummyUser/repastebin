@@ -9,7 +9,7 @@ This is a recreational Pastebin project built using the **Go** programming langu
 
 ## Features Planned to Add
 
-- Password-protected pastes
+- ~~Password-protected pastes~~ Fixed on: 5<sup>th</sup> September, 2025
 - Move from SQLite to a socket-based PostgreSQL database
 - Other useful features as ideas come along
 
