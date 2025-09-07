@@ -2,4 +2,3 @@ bin
 *.db
 bin/
 .env
-.env.local
